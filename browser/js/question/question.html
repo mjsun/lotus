@@ -3,6 +3,7 @@
     <div class="panel panel-primary">
         <div class="panel-heading">
             {{question.title}}
+            <button class="btn btn_defaults" ui-sref="editQuestion">edit</button>
         </div>
         <div class="panel-body">
             {{question.content}}
@@ -10,5 +11,5 @@
         {{question.answers}}
     </div>
     <answer answer="answer" ng-repeat="answer in question.answers"></answer>
-    <editor></editor>
+    <editor fn="addComment(content)" button-name="Add comment"></editor>
 </div>
