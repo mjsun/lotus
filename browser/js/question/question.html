@@ -1,0 +1,14 @@
+<div class="container">
+    {{question}}
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            {{question.title}}
+        </div>
+        <div class="panel-body">
+            {{question.content}}
+        </div>
+        {{question.answers}}
+    </div>
+    <answer answer="answer" ng-repeat="answer in question.answers"></answer>
+    <editor></editor>
+</div>

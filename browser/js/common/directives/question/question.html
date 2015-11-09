@@ -1,0 +1,13 @@
+<div class="list-group-item question">
+    <button class="btn btn-primary" type="button">
+        Views <span class="badge">{{question.views}}</span>
+    </button>
+    <button class="btn btn-info" type="button">
+        Hits <span class="badge">{{question.hits}}</span>
+    </button>
+    <a class="btn btn-warning" type="button">
+        answers <span class="badge">{{question.answers.length}}</span>
+    </a>
+    <a href ui-sref="question({id: question._id})">{{question.title}}</a>
+    <a class="btn btn-info" ng-repeat="tag in question.tags">{{tag}}</a>
+</div>
