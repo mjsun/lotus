@@ -6,8 +6,10 @@
         Hits <span class="badge">{{question.hits}}</span>
     </button>
     <a class="btn btn-warning" type="button">
-        answers <span class="badge">{{question.answers.length}}</span>
+        answers <span class="badge">{{question.comments.length}}</span>
     </a>
     <a href ui-sref="question({id: question._id})">{{question.title}}</a>
-    <a class="btn btn-info" ng-repeat="tag in question.tags">{{tag}}</a>
+    <span ng-repeat="tag in question.tags">
+        <a class="label label-info" >{{tag.text}}</a>
+    </span>
 </div>

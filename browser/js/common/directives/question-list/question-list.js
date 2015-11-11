@@ -13,5 +13,7 @@ app.directive('questionList', function(){
 });
 
 app.controller('QuestionListCtrl', function($scope, QuestionFactory){
-    $scope.questions = QuestionFactory.getQuestionList();
+    QuestionFactory.getQuestionList().then(function(res){
+        $scope.questions = res.data;
+    });
 });

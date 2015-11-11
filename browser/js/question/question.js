@@ -3,20 +3,53 @@ app.config(function($stateProvider){
         .state('question', {
             url: '/question/detail/:id',
             templateUrl: 'js/question/question.html',
-            controller: function($scope, $stateParams, QuestionFactory){
-                $scope.question = QuestionFactory.getQuestionById($stateParams.id);
-                $scope.addComment = function(n){
-                    console.log('comment', n);
+            resolve: {
+                question: function($stateParams, QuestionFactory){
+                    return QuestionFactory.getQuestionById($stateParams.id).then(function(res){
+                        return res.data;
+                    });
+                },
+                user: function(AuthService){
+                    return AuthService.getLoggedInUser();
+                },
+                views: function(question, QuestionFactory){
+                    return QuestionFactory.updateQuestionViews(question).then(function(res){
+                        return res.data;
+                    });
+                }
+            },
+            controller: function($scope, $stateParams, AuthService, QuestionFactory, question, user){
+                $scope.question = question;
+                $scope.addComment = function(){
+                    var comment_obj = {
+                        questionId: question._id,
+                        comment: $scope.comment,
+                        tags: $scope.commentTags,
+                        author: user
+                    };
+                    QuestionFactory.addComment(comment_obj);
+                };
+                $scope.hitQuestion = function(){
+                    QuestionFactory.updateQuestionHits($scope.question).then(function(res){
+                        console.log(res.data);
+                    });
                 };
             }
         })
         .state('editQuestion', {
-            url: '/question/edit',
+            url: '/question/edit/:id',
             templateUrl: 'js/question/edit.html',
-            controller: function($scope, $stateParams, QuestionFactory){
-                $scope.question = QuestionFactory.getQuestionById($stateParams.id);
-                $scope.updateQuestion = function(n){
-                    console.log('edit', n);
+            resolve: {
+               question: function($stateParams, QuestionFactory){
+                   return QuestionFactory.getQuestionById($stateParams.id).then(function(res){
+                       return res.data;
+                   });
+               }
+            },
+            controller: function($scope, $stateParams, QuestionFactory, question){
+                $scope.question = question;
+                $scope.updateQuestion = function(){
+                    QuestionFactory.updateQuestion($scope.question);
                 }
             }
         })
@@ -24,8 +57,8 @@ app.config(function($stateProvider){
             url: '/question/ask',
             templateUrl: 'js/question/create.html',
             controller: function($scope, QuestionFactory){
-                $scope.createQuestion = function(n){
-                    console.log('create', n);
+                $scope.postQuestion = function(){
+                    QuestionFactory.postQuestion($scope.question);
                 }
             }
         })

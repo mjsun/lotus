@@ -1,15 +1,31 @@
 <div class="container">
-    {{question}}
     <div class="panel panel-primary">
         <div class="panel-heading">
-            {{question.title}}
-            <button class="btn btn_defaults" ui-sref="editQuestion">edit</button>
+            <div class="row">
+                <div class="col-md-10">{{question.title}}</div>
+                <div class="col-md-2">
+                    <span class="btn btn-warning" ui-sref="editQuestion({id: question._id})"><i class="fa fa-pencil"></i> Edit</span>
+                    <span class="btn btn-success" ng-click="hitQuestion()"><i class="fa fa-thumbs-up"></i> Hit</span>
+                </div>
+            </div>
         </div>
         <div class="panel-body">
-            {{question.content}}
+            <!--{{question.content}}-->
+            <div ng-bind-html="question.content"></div>
         </div>
-        {{question.answers}}
+        <div class="panel-footer">
+            <span ng-repeat="tag in question.tags">
+                <a class="label label-info">{{tag.text}}</a>
+            </span>
+        </div>
     </div>
-    <answer answer="answer" ng-repeat="answer in question.answers"></answer>
-    <editor fn="addComment(content)" button-name="Add comment"></editor>
+    <answer answer="comment" ng-repeat="comment in question.comments"></answer>
+    <div class="footer">
+        <editor content="comment"></editor>
+        <div class="well">
+            <label for="commentTags">Tags</label>
+            <tags-input id="commentTags" ng-model="commentTags"></tags-input>
+        </div>
+        <a class="btn btn-primary" ng-click="addComment()">Add a comment</a>
+    </div>
 </div>

@@ -13,5 +13,5 @@ app.directive('question', function(){
 });
 
 app.controller('QuestionCtrl', function($scope){
-    console.log($scope.question);
+    //console.log($scope.question);
 });

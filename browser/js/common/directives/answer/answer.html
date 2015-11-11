@@ -1,3 +1,16 @@
-<div>
-    {{answer.answer}}
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-5">By: {{answer.author.email}}</div>
+            <!--<div class="col-md-10">at: {{answer.modified}}</div>-->
+        </div>
+    </div>
+    <div class="panel-body">
+        <div ng-bind-html="answer.comment"></div>
+    </div>
+    <div class="panel-footer">
+        <span ng-repeat="tag in answer.tags">
+            <a class="label label-info" >{{tag.text}}</a>
+        </span>
+    </div>
 </div>

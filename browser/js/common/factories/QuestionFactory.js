@@ -1,37 +1,40 @@
-app.factory('QuestionFactory', function(){
+app.factory('QuestionFactory', function($http){
     var questions = [
         {
             _id: '1234',
             title: 'question 1?',
+            author: {_id: '12321', name: 'Mingjie'},
             content: 'content of question 1',
             answers: [
                 {
-                    user: {},
+                    author: {_id: '12321', name: 'Donnie'},
                     answer: 'answer 1',
-                    comments: [],
-                    modified:'',
-                    correct: false
+                    modified:'15-11-08',
+                    correct: false,
+                    tags: ['new', 'java'],
+                    support:0
                 },
                 {
                     user: {},
                     answer: 'answer 2',
                     comments: [],
                     modified:'',
-                    correct: false
+                    correct: false,
+                    support: 4
                 },
                 {
                     user: {},
                     answer: 'answer 3',
                     comments: [],
                     modified:'',
-                    correct: false
+                    correct: false,
+                    support: 19
                 }
             ],
             hits: 14,
             views: 29,
             tags: ['javascript', 'js', 'mongodb'],
-            createTime: '',
-            modifiedTime: ''
+            modified: '2015-11-12'
         },
         {
             _id: '2345',
@@ -75,20 +78,40 @@ app.factory('QuestionFactory', function(){
     ];
 
     var getQuestionList = function(){
-        return questions;
+        return $http.get('/api/question/');
     };
 
     var getQuestionById = function(id){
-        for(var i = 0; i<questions.length; i++){
-            if(id === questions[i]._id){
-                return questions[i];
-            }
-        }
-        return false;
+        return $http.get('/api/question/'+id);
+    };
+
+    var addComment = function(comment){
+        return $http.post('/api/question/comment', comment);
+    };
+
+    var postQuestion = function(question){
+        return $http.post('/api/question/', question);
+    };
+
+    var updateQuestion = function(question){
+        return $http.put('/api/question/', question);
+    };
+
+    var updateQuestionViews = function(question){
+        return $http.put('/api/question/views', question);
+    };
+
+    var updateQuestionHits = function(question){
+        return $http.put('/api/question/hits', question);
     };
 
     return {
         getQuestionList: getQuestionList,
-        getQuestionById: getQuestionById
+        getQuestionById: getQuestionById,
+        postQuestion: postQuestion,
+        addComment: addComment,
+        updateQuestion: updateQuestion,
+        updateQuestionViews: updateQuestionViews,
+        updateQuestionHits: updateQuestionHits
     };
 });
