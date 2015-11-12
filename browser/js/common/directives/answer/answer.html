@@ -1,7 +1,7 @@
 <div class="panel panel-warning">
     <div class="panel-heading">
         <div class="row">
-            <div class="col-md-5">By: {{answer.author.email}}</div>
+            <div class="col-md-5">By: <a ui-sref="usersDetail({id: answer.author._id})">{{answer.author.email}}</a></div>
             <!--<div class="col-md-10">at: {{answer.modified}}</div>-->
         </div>
     </div>

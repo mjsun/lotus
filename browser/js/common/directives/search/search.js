@@ -6,7 +6,17 @@ app.directive('search', function() {
 
         },
         controller: function($scope){
-            $scope.search = 'Search';
+            $scope.search = function(){
+                console.log($scope.query);
+                return [
+                    {'text': 'df'},
+                    {'text': 'fd'},
+                    {'text': '2q'},
+                    {'text': '23'},
+                    {'text': '3r'}
+                ];
+            }
+
         }
     };
 });

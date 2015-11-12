@@ -12,8 +12,5 @@ app.directive('questionList', function(){
     }
 });
 
-app.controller('QuestionListCtrl', function($scope, QuestionFactory){
-    QuestionFactory.getQuestionList().then(function(res){
-        $scope.questions = res.data;
-    });
+app.controller('QuestionListCtrl', function($scope){
 });

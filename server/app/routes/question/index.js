@@ -35,6 +35,28 @@ router.get('/:id', function(req, res, next){
         .then(null, next);
 });
 
+router.get('/user/:id', function(req, res, next){
+    Question
+        .find({author: req.params.id})
+        .populate('comments.author')
+        .exec()
+        .then(function(doc){
+            res.json(doc);
+        })
+        .then(null, next);
+});
+
+router.get('/comments/:uid', function(req, res, next){
+    Question
+        .find()
+        .where('comments.author').equals(req.params.uid)
+        .exec()
+        .then(function(docs){
+            res.json(docs);
+        })
+        .then(null, next);
+});
+
 router.post('/comment', ensureAuthenticated, function(req, res, next){
     var id = req.body.questionId;
     var obj = {
@@ -97,7 +119,7 @@ router.put('/views', function (req, res, next) {
         .then(null, next);
 });
 
-router.put('/hits', function (req, res, next) {
+router.put('/hits', ensureAuthenticated, function (req, res, next) {
     Question
         .findOne({_id: req.body._id})
         .then(function(doc){

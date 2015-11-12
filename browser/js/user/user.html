@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div ng-repeat="user in users" class="col-md-3">
+            <div class="well">
+                <div class="row">
+                    <div class="col-md-5">
+                        <a ui-sref="usersDetail({id: user._id})">
+                            <img class="img-circle" style="width:50px; height:50px;" src={{user.image}} >
+                        </a>
+                    </div>
+                    <div class="col-md-7">
+                        <a ui-sref="usersDetail({id: user._id})">{{user.userName}}</a>
+                        <div>{{user.Country}}</div>
+                        <div ng-bind-html="user.description"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

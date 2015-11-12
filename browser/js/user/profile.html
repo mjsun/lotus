@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="well">
+                <img class="img-responsive" style="" ng-src={{user.image}} >
+                <span class="label label-primary">hits 20</span>
+                <span class="label label-success">correct 40</span>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="list-group">
+                <div class="list-group-item">{{user.userName || 'unknown'}}</div>
+                <div class="list-group-item" ng-bind-html="user.description || ''"></div>
+                <div class="list-group-item">{{user.country || 'unknown'}}</div>
+                <div class="list-group-item">{{user.role || 'unknown'}}</div>
+                <div class="list-group-item">{{user.email}}</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div ng-repeat="link in user.links">
+                <div class="well">
+                    <span class="label label-info label-md">{{link.name}}</span>
+                    <span class="btn btn-link">{{link.url}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-info">
+        <div class="panel-heading">Questions {{user.userName}} asked</div>
+        <div class="panel-body">
+            <question-list questions="questions"></question-list>
+        </div>
+    </div>
+    <div class="panel panel-success">
+        <div class="panel-heading">Questions {{user.userName}} answered</div>
+        <div class="panel-body">
+            <question-list questions="commentedQuestions"></question-list>
+        </div>
+    </div>
+
+</div>

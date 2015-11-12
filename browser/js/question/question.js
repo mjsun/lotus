@@ -56,8 +56,14 @@ app.config(function($stateProvider){
         .state('askQuestion', {
             url: '/question/ask',
             templateUrl: 'js/question/create.html',
-            controller: function($scope, QuestionFactory){
+            resolve: {
+                user: function(AuthService){
+                    return AuthService.getLoggedInUser();
+                }
+            },
+            controller: function($scope, QuestionFactory, user){
                 $scope.postQuestion = function(){
+                    $scope.question.author = user;
                     QuestionFactory.postQuestion($scope.question);
                 }
             }

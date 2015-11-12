@@ -82,8 +82,12 @@ app.factory('QuestionFactory', function($http){
     };
 
     var getQuestionById = function(id){
-        return $http.get('/api/question/'+id);
+        return $http.get('/api/question/' + id);
     };
+
+    var getQuestionsByUserId = function(id){
+        return $http.get('/api/question/user/' + id);
+    }
 
     var addComment = function(comment){
         return $http.post('/api/question/comment', comment);
@@ -105,6 +109,14 @@ app.factory('QuestionFactory', function($http){
         return $http.put('/api/question/hits', question);
     };
 
+    var removeQuestion = function(id){
+        return $http.delete('/api/question/' + id);
+    };
+
+    var getCommentsByUserId = function(uid){
+        return $http.get('/api/question/comments/' + uid);
+    };
+
     return {
         getQuestionList: getQuestionList,
         getQuestionById: getQuestionById,
@@ -112,6 +124,9 @@ app.factory('QuestionFactory', function($http){
         addComment: addComment,
         updateQuestion: updateQuestion,
         updateQuestionViews: updateQuestionViews,
-        updateQuestionHits: updateQuestionHits
+        updateQuestionHits: updateQuestionHits,
+        getQuestionsByUserId: getQuestionsByUserId,
+        removeQuestion: removeQuestion,
+        getCommentsByUserId: getCommentsByUserId
     };
 });

@@ -6,6 +6,20 @@ var schema = new mongoose.Schema({
     email: {
         type: String
     },
+    userName: String,
+    firstName: String,
+    lastName: String,
+    job: String,
+    country: String,
+    description: String,
+    links: [{
+        name: String,
+        url: String
+    }],
+    image: {type: String, default: 'http://9news.static9.net.au/content/images/portrait-placeholder.png'},
+    tags: [{
+        text: String
+    }],
     password: {
         type: String
     },

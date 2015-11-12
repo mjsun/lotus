@@ -1,0 +1,54 @@
+<div class="container">
+    <!--{{user}}-->
+    <form>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" ng-model="user.email" placeholder="mike123@fsa.com">
+        </div>
+        <div class="form-group">
+            <label for="userName">User Name</label>
+            <input type="text" class="form-control" id="userName" ng-model="user.userName" placeholder="Transformer">
+        </div>
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" ng-model="user.firstName" placeholder="Mike">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" ng-model="user.lastName" placeholder="Smith">
+        </div>
+        <div class="form-group">
+            <label for="job">Job Title</label>
+            <input type="text" class="form-control" id="job" ng-model="user.job" placeholder="Programmer">
+        </div>
+        <div class="form-group">
+            <label for="country">Country</label>
+            <input type="text" class="form-control" id="country" ng-model="user.country" placeholder="United State">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <editor id="description" content="user.description"></editor>
+        </div>
+        <div class="form-group">
+            <label for="description">Related Website</label>
+            <div class="btn btn-success btn-sm" ng-click="addLink()"><i class="fa fa-plus"></i></div>
+            <div ng-repeat="link in user.links">
+                <label>Website Name</label>
+                <input type="text" ng-model="link.name" placeholder="facebook">
+                <label>Website Url</label>
+                <input type="text" ng-model="link.url">
+
+                <div ng-show="link.url" class="btn btn-danger btn-sm" ><i ng-click="removeLink(link)" class="fa fa-minus"></i></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="image">Image Url</label>
+            <input type="text" class="form-control" id="image" ng-model="user.image">
+        </div>
+        <div class="well">
+            <label for="userTags">Tags</label>
+            <tags-input id="userTags" ng-model="user.tags"></tags-input>
+        </div>
+        <a ng-click="updateProfile()" class="btn btn-default">Submit</a>
+    </form>
+</div>

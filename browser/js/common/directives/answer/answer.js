@@ -9,6 +9,7 @@ app.directive('answer', function(){
 
        },
        controller: function($scope){
+           console.log($scope.answer);
        }
    };
 });

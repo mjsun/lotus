@@ -4,6 +4,7 @@ var User = mongoose.model('User');
 
 var schema = new mongoose.Schema({
     title: String,
+    author: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     content: String,
     tags: [{text: String}],
     ModifiedDate : { type : Date, default: Date.now },

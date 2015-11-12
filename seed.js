@@ -34,10 +34,30 @@ var seedUsers = function () {
             email: 'obama@gmail.com',
             password: 'potus'
         },
-	{
-	    email: 'mingjie@fsa.com',
-	    password: 'mingjie'
-	}
+        {
+            email: 'mingjie@fsa.com',
+            password: 'mingjie',
+            role: 'admin',
+            userName: 'Prime',
+            description: 'programmer',
+            company: 'Monster',
+            country: 'U.S',
+            links: [{
+              name: 'facebook',
+                url: 'www.facebook.com'
+            },
+                {
+                    name: 'linkedin',
+                    url: 'www.linkedin.com'
+                },
+                {
+                    name: 'google+',
+                    url: 'plus.google.com'
+                }
+            ],
+            image: 'http://www.mattelder.com/wp-content/gallery/comics/000258e-optimusprime_mattelder.jpg'
+
+        }
     ];
 
     return User.createAsync(users);
