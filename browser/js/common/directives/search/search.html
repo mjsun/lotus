@@ -1,2 +1,7 @@
 <!--<input class="form-control" ng-model="query" placeholder="Search" ng-keyup="search()">-->
-<input type="text" ng-model="query" placeholder="Search" uib-typeahead="question.text for question in search($viewValue)" typeahead-loading="loadingContent" typeahead-no-results="noResults" class="form-control">
+<input type="text" ng-model="searchQuery" placeholder="Search" uib-typeahead="question.title for question in search($viewValue)" typeahead-template-url="customTemplate.html" typeahead-loading="loadingContent" typeahead-on-select="goTo($item, $model, $label)" typeahead-no-results="noResults" class="form-control">
+<script type="text/ng-template" id="customTemplate.html">
+    <a ui-sref="question({id:match.model._id})" ng-keyup="goTo(match.model._id)">
+        <span ng-bind-html="match.label | uibTypeaheadHighlight:query"></span>
+    </a>
+</script>

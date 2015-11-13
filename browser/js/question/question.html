@@ -6,7 +6,7 @@
         <div class="panel-heading">
             <div class="row">
                 <div class="col-md-10">{{question.title}}</div>
-                <div class="col-md-2">
+                <div class="col-md-2" ng-show="isLoggedIn()">
                     <span class="btn btn-warning" ui-sref="editQuestion({id: question._id})"><i class="fa fa-pencil"></i> Edit</span>
                     <span class="btn btn-success" ng-click="hitQuestion()"><i class="fa fa-thumbs-up"></i> Hit</span>
                 </div>
@@ -23,7 +23,7 @@
         </div>
     </div>
     <answer answer="comment" ng-repeat="comment in question.comments"></answer>
-    <div class="footer">
+    <div class="footer" ng-show="isLoggedIn()">
         <editor content="comment"></editor>
         <div class="well">
             <label for="commentTags">Tags</label>

@@ -117,6 +117,10 @@ app.factory('QuestionFactory', function($http){
         return $http.get('/api/question/comments/' + uid);
     };
 
+    var getQuestionsByTag = function(tag){
+        return $http.get('/api/question/tag/'+tag);
+    };
+
     return {
         getQuestionList: getQuestionList,
         getQuestionById: getQuestionById,
@@ -127,6 +131,7 @@ app.factory('QuestionFactory', function($http){
         updateQuestionHits: updateQuestionHits,
         getQuestionsByUserId: getQuestionsByUserId,
         removeQuestion: removeQuestion,
-        getCommentsByUserId: getCommentsByUserId
+        getCommentsByUserId: getCommentsByUserId,
+        getQuestionsByTag: getQuestionsByTag
     };
 });

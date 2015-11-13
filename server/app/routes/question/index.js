@@ -57,6 +57,18 @@ router.get('/comments/:uid', function(req, res, next){
         .then(null, next);
 });
 
+router.get('/tag/:tag', function(req, res, next){
+    var tag = req.params.tag;
+    Question
+        .find({'tags.text': new RegExp(tag, 'i')})
+        .where()
+        .then(function(docs){
+            console.log(docs);
+            res.json(docs);
+        })
+        .then(null, next);
+});
+
 router.post('/comment', ensureAuthenticated, function(req, res, next){
     var id = req.body.questionId;
     var obj = {

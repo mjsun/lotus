@@ -34,6 +34,9 @@ app.config(function($stateProvider){
                         console.log(res.data);
                     });
                 };
+                $scope.isLoggedIn = function () {
+                    return AuthService.isAuthenticated();
+                };
             }
         })
         .state('editQuestion', {
@@ -46,10 +49,12 @@ app.config(function($stateProvider){
                    });
                }
             },
-            controller: function($scope, $stateParams, QuestionFactory, question){
+            controller: function($scope, $stateParams, QuestionFactory, question, $state){
                 $scope.question = question;
                 $scope.updateQuestion = function(){
-                    QuestionFactory.updateQuestion($scope.question);
+                    QuestionFactory.updateQuestion($scope.question).then(function(){
+                        $state.go('question',{id: $scope.question._id});
+                    });
                 }
             }
         })
@@ -61,10 +66,12 @@ app.config(function($stateProvider){
                     return AuthService.getLoggedInUser();
                 }
             },
-            controller: function($scope, QuestionFactory, user){
+            controller: function($scope, QuestionFactory, user, $state){
                 $scope.postQuestion = function(){
                     $scope.question.author = user;
-                    QuestionFactory.postQuestion($scope.question);
+                    QuestionFactory.postQuestion($scope.question).then(function(){
+                        $state.go('home');
+                    });
                 }
             }
         })

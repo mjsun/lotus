@@ -5,18 +5,17 @@ app.directive('search', function() {
         scope: {
 
         },
-        controller: function($scope){
+        controller: function($scope, QuestionFactory, UserFactory, $state){
             $scope.search = function(){
-                console.log($scope.query);
-                return [
-                    {'text': 'df'},
-                    {'text': 'fd'},
-                    {'text': '2q'},
-                    {'text': '23'},
-                    {'text': '3r'}
-                ];
-            }
+                return QuestionFactory.getQuestionsByTag($scope.searchQuery).then(function(res){
+                    console.log(res.data);
+                    return res.data;
+                });
+            };
 
+            $scope.goTo = function(item){
+                $state.go('question', {id: item._id});
+            };
         }
     };
 });

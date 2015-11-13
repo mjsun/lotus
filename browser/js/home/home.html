@@ -5,9 +5,11 @@
             <div class="row">
                 <div class="col-md-6">
                     <p>Join us, help your peers and help your self</p>
-                    <search></search>
-                    <div>
-                        <a ui-sref="login" class="btn btn-primary wt_blue btn-lg">Sign Up</a>
+                    <div style="margin-bottom:5px">
+                        <search></search>
+                    </div>
+                    <div ng-show="!isLoggedIn()">
+                        <a ui-sref="login" class="btn btn-primary wt_blue btn-lg">Log In</a>
                     </div>
                 </div>
                 <div class="col-md-2">

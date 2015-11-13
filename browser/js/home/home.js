@@ -9,8 +9,11 @@ app.config(function ($stateProvider) {
                 });
             }
         },
-        controller: function($scope, QuestionFactory, questions){
+        controller: function($scope, QuestionFactory, questions, AuthService){
             $scope.questions = questions;
+            $scope.isLoggedIn = function () {
+                return AuthService.isAuthenticated();
+            };
         }
     });
 });
